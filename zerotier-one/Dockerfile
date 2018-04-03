@@ -8,13 +8,19 @@ ARG BUILD_VERSION
 
 # Copy root filesystem
 ARG BUILD_ARCH=amd64
-COPY rootfs /
-COPY bin/${BUILD_ARCH} /usr/bin
+ARG ZT_VER=1.2.4
 
-RUN ln -s /usr/bin/zerotier-one /usr/bin/zerotier-cli \
+# Install ZeroTier One
+RUN apk add --no-cache tar dpkg \
+  && curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
+  && dpkg-deb -x /tmp/zerotier-one.deb /tmp/zerotier-one \
+  && cp /tmp/zerotier-one/usr/sbin/zerotier-one /usr/bin \
+  && ln -s /usr/bin/zerotier-one /usr/bin/zerotier-cli \
   && addgroup -g 1000 -S zerotier-one \
-  && adduser -D -u 1000 -S -h /data -H zerotier-one -G zerotier-one
+  && adduser -D -u 1000 -S -h /data -H zerotier-one -G zerotier-one \
+  && rm -rf /tmp/zerotier-one
 
+COPY rootfs /
 # Labels
 LABEL \
     io.hass.name="zerotier" \

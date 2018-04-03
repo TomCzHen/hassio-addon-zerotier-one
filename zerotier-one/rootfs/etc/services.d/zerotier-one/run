@@ -6,4 +6,6 @@
 
 source /usr/lib/hassio-addons/base.sh
 
-exec zerotier-one -U -p
+api_port=$(hass.config.get 'api_port')
+
+exec zerotier-one -U -p${api_port}

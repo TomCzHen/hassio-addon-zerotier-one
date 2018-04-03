@@ -19,10 +19,12 @@
     ],
     "options": {
       "network": "",
+      "api_port": "9993",
       "log_level": "info"
     },
     "schema": {
       "network": "str",
+      "api_port": "port",
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
     },
     "image": "tomczhen/addon-zerotier-one-{arch}"
