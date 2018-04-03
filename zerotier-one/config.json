@@ -1,0 +1,29 @@
+{
+    "name": "ZeroTier One",
+    "version": "1.2.4",
+    "slug": "zerotier-one",
+    "description": "ZeroTier One",
+    "arch": [
+      "armhf",
+      "amd64"
+    ],
+    "startup": "after",
+    "boot": "auto",
+    "host_network": true,
+    "privileged": [
+      "NET_ADMIN",
+      "SYS_ADMIN"
+    ],
+    "devices": [
+      "/dev/net/tun:/dev/net/tun:rwm"
+    ],
+    "options": {
+      "network": "",
+      "log_level": "info"
+    },
+    "schema": {
+      "network": "str",
+      "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
+    },
+    "image": "tomczhen/addon-zerotier-one-{arch}"
+  }

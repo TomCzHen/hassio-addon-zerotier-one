@@ -1,0 +1,8 @@
+{
+    "squash": false,
+    "build_from": {
+        "amd64": "hassioaddons/base-amd64:1.3.3",
+        "armhf": "hassioaddons/base-armhf:1.3.3"
+    },
+    "args": {}
+}
