@@ -5,15 +5,8 @@
 # ==============================================================================
 source /usr/lib/hassio-addons/base.sh
 
-if ! hass.directory_exists -d "/data/networks.d"; then
-    mkdir /data/networks.d
-fi
+token=$(hass.config.get 'api_token')
+echo ${token} > /data/authtoken.secret
 
-network=$(hass.config.get 'network')
-
-if [ ! hass.file_exists "/data/networks.d/${network}.conf" ] && [ ${network} ]; then
-    rm -f /data/networks.d/*
-    touch "/data/networks.d/${network}.conf"
-fi
 
 ln -s /data /var/lib/zerotier-one
