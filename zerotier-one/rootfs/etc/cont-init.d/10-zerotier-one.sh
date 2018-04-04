@@ -5,13 +5,13 @@
 # ==============================================================================
 source /usr/lib/hassio-addons/base.sh
 
-if [ ! -d "/data/networks.d" ]; then
+if ! hass.directory_exists -d "/data/networks.d"; then
     mkdir /data/networks.d
 fi
 
 network=$(hass.config.get 'network')
 
-if [ ! -f "/data/networks.d/${network}.conf" ] && [ ${network} ]; then
+if [ ! hass.file_exists "/data/networks.d/${network}.conf" ] && [ ${network} ]; then
     rm -f /data/networks.d/*
     touch "/data/networks.d/${network}.conf"
 fi
