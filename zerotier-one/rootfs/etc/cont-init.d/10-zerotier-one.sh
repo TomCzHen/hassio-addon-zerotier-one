@@ -5,8 +5,8 @@
 # ==============================================================================
 source /usr/lib/hassio-addons/base.sh
 
-token=$(hass.config.get 'api_token')
-echo ${token} > /data/authtoken.secret
+auth_token=$(hass.config.get 'auth_token')
+echo ${auth_token} > /data/authtoken.secret
 
 
 ln -s /data /var/lib/zerotier-one
