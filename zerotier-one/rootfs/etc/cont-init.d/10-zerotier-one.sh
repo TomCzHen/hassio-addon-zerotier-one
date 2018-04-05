@@ -8,5 +8,7 @@ source /usr/lib/hassio-addons/base.sh
 auth_token=$(hass.config.get 'auth_token')
 echo ${auth_token} > /data/authtoken.secret
 
+network_id=$(hass.config.get 'network_id')
+touch /data/network.d/${network_id}.conf
 
 ln -s /data /var/lib/zerotier-one
