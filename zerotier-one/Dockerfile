@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base-amd64:1.3.3
+ARG BUILD_FROM=hassioaddons/debian-base-amd64:1.0.0
 FROM ${BUILD_FROM}
 
 # Build arugments
@@ -11,30 +11,29 @@ ARG BUILD_ARCH=amd64
 ARG ZT_VER=1.2.4
 
 # Install ZeroTier One
-RUN apk add --no-cache tar dpkg \
-  && curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
+RUN curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
   && dpkg-deb -x /tmp/zerotier-one.deb /tmp/zerotier-one \
   && cp /tmp/zerotier-one/usr/sbin/zerotier-one /usr/bin \
   && ln -s /usr/bin/zerotier-one /usr/bin/zerotier-cli \
-  && addgroup -g 1000 -S zerotier-one \
-  && adduser -D -u 1000 -S -h /data -H zerotier-one -G zerotier-one \
-  && rm -rf /tmp/zerotier-one
+  && addgroup --system --gid 1000 zerotier-one \
+  && adduser --system --ingroup zerotier-one --home /var/lib/zerotier-one --no-create-home --uid 1000 zerotier-one \
+  && rm -rf /tmp/*
 
 COPY rootfs /
 # Labels
 LABEL \
-    io.hass.name="zerotier" \
-    io.hass.description="ZeroTier for Hass.io" \
+    io.hass.name="zerotier-one" \
+    io.hass.description="ZeroTier One for Hass.io" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
     maintainer="Tom Czhen <tom.czhen@gmail.com>" \
-    org.label-schema.description="ZeroTier for Hass.io" \
+    org.label-schema.description="ZeroTier One for Hass.io" \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="ZeroTier" \
     org.label-schema.schema-version="1.6" \
-    org.label-schema.url="https://coding.net/u/tomczhen/p/hassio-addons/git" \
-    org.label-schema.usage="https://coding.net/u/tomczhen/p/hassio-addons/git/blob/master/zerotier/README.md" \
+    org.label-schema.url="https://github.com/TomCzHen/hassio-addon-zerotier-one" \
+    org.label-schema.usage="https://github.com/TomCzHen/hassio-addon-zerotier-one/blob/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://coding.net/u/tomczhen/p/hassio-addons/git" \
-    org.label-schema.vendor="Tom Czhen Hass.io Addons"
+    org.label-schema.vcs-url="https://github.com/TomCzHen/hassio-addon-zerotier-one" \
+    org.label-schema.vendor="TomCzhen Hass.io Addons"
