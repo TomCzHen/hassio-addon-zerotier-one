@@ -9,3 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 No unreleased changes yet.
+
+## Changed
+
+[v1.0.0] (2018-04-06)
+
+### Added
+
+- Initial release
+
+[v1.0.0]: https://github.com/TomCzHen/hassio-addon-zerotier-one/tree/v1.0.0
