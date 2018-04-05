@@ -5,8 +5,6 @@ FROM ${BUILD_FROM}
 ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
-
-# Copy root filesystem
 ARG BUILD_ARCH=amd64
 ARG ZT_VER=1.2.4
 
@@ -19,7 +17,9 @@ RUN curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/z
   && adduser --system --ingroup zerotier-one --home /var/lib/zerotier-one --no-create-home --uid 1000 zerotier-one \
   && rm -rf /tmp/*
 
+# Copy root filesystem
 COPY rootfs /
+
 # Labels
 LABEL \
     io.hass.name="zerotier-one" \
@@ -31,7 +31,7 @@ LABEL \
     org.label-schema.description="ZeroTier One for Hass.io" \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="ZeroTier" \
-    org.label-schema.schema-version="1.6" \
+    org.label-schema.schema-version="1.0.0" \
     org.label-schema.url="https://github.com/TomCzHen/hassio-addon-zerotier-one" \
     org.label-schema.usage="https://github.com/TomCzHen/hassio-addon-zerotier-one/blob/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
