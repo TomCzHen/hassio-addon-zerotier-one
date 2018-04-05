@@ -2,12 +2,13 @@
     "name": "ZeroTier One",
     "version": "1.0.0",
     "slug": "zerotier-one",
+    "url": "https://bbs.hassbian.com/thread-3314-1-1.html",
     "description": "ZeroTier One",
     "arch": [
       "armhf",
       "amd64"
     ],
-    "startup": "after",
+    "startup": "services",
     "boot": "auto",
     "host_network": true,
     "privileged": [
