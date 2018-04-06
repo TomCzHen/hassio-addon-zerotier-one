@@ -25,7 +25,7 @@
       "log_level": "info"
     },
     "schema": {
-      "network_id":"match([0-9a-z]16)",
+      "network_id":"match([0-9a-z]{16})",
       "port": "port",
       "auth_token": "match([0-9A-Za-z]+)",
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"

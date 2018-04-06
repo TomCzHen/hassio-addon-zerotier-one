@@ -9,7 +9,9 @@ ARG BUILD_ARCH=amd64
 ARG ZT_VER=1.2.4
 
 # Install ZeroTier One
-RUN curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
+RUN apt-get update -yqq \
+  && apt-get install apt-utils iproute -y \
+  && curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
   && dpkg-deb -x /tmp/zerotier-one.deb /tmp/zerotier-one \
   && cp /tmp/zerotier-one/usr/sbin/zerotier-one /usr/bin \
   && ln -s /usr/bin/zerotier-one /usr/bin/zerotier-cli \

@@ -9,6 +9,12 @@ auth_token=$(hass.config.get 'auth_token')
 echo ${auth_token} > /data/authtoken.secret
 
 network_id=$(hass.config.get 'network_id')
-touch /data/network.d/${network_id}.conf
+
+if ! hass.directory_exists "/data/networks.d"; then
+    mkdir /data/networks.d
+fi
+
+touch /data/networks.d/${network_id}.conf
+
 
 ln -s /data /var/lib/zerotier-one
