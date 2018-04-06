@@ -1,6 +1,6 @@
 # 说明
 
-1. 配置 `port` 与 `auth_token`
+1. 配置 `network_id` `port` `auth_token`
 
 2. 通过添加 [RESTful Sensor](https://www.home-assistant.io/components/sensor.rest/) 查看 ZeroTier One 状态
 
