@@ -1,8 +1,8 @@
 {
     "name": "ZeroTier One",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "slug": "zerotier-one",
-    "url": "https://bbs.hassbian.com/thread-3314-1-1.html",
+    "url": "https://github.com/TomCzHen/hassio-addon-zerotier-one/blob/master/README.md",
     "description": "ZeroTier One",
     "arch": [
       "armhf",
@@ -11,6 +11,7 @@
     "startup": "services",
     "boot": "auto",
     "host_network": true,
+    "apparmor": true,
     "privileged": [
       "NET_ADMIN",
       "SYS_ADMIN"
@@ -29,6 +30,5 @@
       "port": "port",
       "auth_token": "match([0-9A-Za-z]+)",
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
-    },
-    "image": "tomczhen/addon-zerotier-one-{arch}"
+    }
   }
