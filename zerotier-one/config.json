@@ -3,12 +3,14 @@
     "version": "1.1.0",
     "slug": "zerotier-one",
     "url": "https://github.com/TomCzHen/hassio-addon-zerotier-one/blob/master/README.md",
-    "description": "ZeroTier One",
+    "description": "ZeroTier One For Hass.io Add-ons",
     "arch": [
       "armhf",
       "amd64"
     ],
-    "startup": "services",
+    "startup": "system",
+    "hassio_role": "default",
+    "hassio_api": true,
     "boot": "auto",
     "host_network": true,
     "apparmor": true,

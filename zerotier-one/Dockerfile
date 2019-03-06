@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/debian-base-amd64:1.0.0
+ARG BUILD_FROM=hassioaddons/ubuntu-base-amd64:2.3.1
 FROM ${BUILD_FROM}
 
 # Build arugments
@@ -6,11 +6,11 @@ ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
 ARG BUILD_ARCH=amd64
-ARG ZT_VER=1.2.4
+ARG ZT_VER=1.2.12
 
 # Install ZeroTier One
 RUN apt-get update -yqq \
-  && apt-get install kmod iproute -y \
+  && apt-get install kmod iproute2 -y \
   && curl https://download.zerotier.com/RELEASES/${ZT_VER}/dist/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
   && dpkg-deb -x /tmp/zerotier-one.deb /tmp/zerotier-one \
   && cp /tmp/zerotier-one/usr/sbin/zerotier-one /usr/bin \
@@ -33,7 +33,7 @@ LABEL \
     org.label-schema.description="ZeroTier One for Hass.io" \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="ZeroTier" \
-    org.label-schema.schema-version="1.0.0" \
+    org.label-schema.schema-version="1.1.0" \
     org.label-schema.url="https://github.com/TomCzHen/hassio-addon-zerotier-one" \
     org.label-schema.usage="https://github.com/TomCzHen/hassio-addon-zerotier-one/blob/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
